@@ -1,0 +1,536 @@
+
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Rezervacije</title>
+
+  <!-- ELEGANTNI FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Arial, sans-serif;
+      background:#111;
+      color:white;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:100vh;
+
+      /* TU UBACI POZADINSKU SLIKU */
+      background-image:url("kravica.jpg");
+
+      background-size:cover;
+      background-position:center;
+
+      position:relative;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      text-align:center;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      padding:20px;
+    }
+
+    /* LOGO */
+
+    .logo{
+      width:230px;
+
+      opacity:0.75;
+
+      margin-bottom:25px;
+    }
+
+    /* NASLOV */
+
+    h1{
+      font-size:65px;
+      margin-bottom:15px;
+
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-weight:bold;
+
+      text-shadow:2px 2px 12px rgba(0,0,0,0.7);
+    }
+
+    .subtitle{
+      font-size:22px;
+      color:#e5e5e5;
+      margin-bottom:40px;
+    }
+
+    /* BUTTON */
+
+    .menu-btn{
+      display:inline-block;
+
+      padding:16px 38px;
+
+      background:#c59d5f;
+
+      color:white;
+
+      text-decoration:none;
+
+      border-radius:12px;
+
+      font-size:18px;
+
+      transition:0.3s;
+    }
+
+    .menu-btn:hover{
+      background:#e0b26c;
+      transform:scale(1.05);
+    }
+
+    /* MENU */
+
+    .menu-section{
+      padding:90px 10%;
+      background:#181818;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+
+      font-size:45px;
+
+      color:#c59d5f;
+
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-weight:bold;
+    }
+
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:35px;
+    }
+
+    .menu-card{
+      background:#222;
+      border-radius:18px;
+      overflow:hidden;
+
+      transition:0.3s;
+    }
+
+    .menu-card:hover{
+      transform:translateY(-7px);
+    }
+
+    .food-image{
+      width:100%;
+      height:230px;
+      object-fit:cover;
+      background:#444;
+    }
+
+    .menu-content{
+      padding:22px;
+    }
+
+    .food-title{
+      font-size:28px;
+      margin-bottom:12px;
+
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-weight:bold;
+    }
+
+    .food-desc{
+      color:#ccc;
+      line-height:1.6;
+      margin-bottom:15px;
+    }
+
+    .price{
+      color:#c59d5f;
+      font-size:22px;
+      font-weight:bold;
+    }
+
+    /* REZERVACIJE */
+
+    .reservation-section{
+      padding:90px 10%;
+      background:#101010;
+    }
+
+    .reservation-form{
+      max-width:750px;
+      margin:auto;
+
+      background:#1d1d1d;
+
+      padding:45px;
+
+      border-radius:22px;
+    }
+
+    .form-group{
+      margin-bottom:25px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:10px;
+      font-size:17px;
+    }
+
+    input,
+    textarea,
+    select{
+      width:100%;
+      padding:16px;
+
+      border:none;
+
+      border-radius:12px;
+
+      background:#2b2b2b;
+
+      color:white;
+
+      font-size:16px;
+    }
+
+    textarea{
+      resize:none;
+      height:130px;
+    }
+
+    .submit-btn{
+      width:100%;
+
+      padding:18px;
+
+      border:none;
+
+      border-radius:14px;
+
+      background:#c59d5f;
+
+      color:white;
+
+      font-size:19px;
+
+      cursor:pointer;
+
+      transition:0.3s;
+    }
+
+    .submit-btn:hover{
+      background:#e0b26c;
+      transform:scale(1.02);
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      background:#0a0a0a;
+      color:#aaa;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:700px){
+
+      h1{
+        font-size:42px;
+      }
+
+      .subtitle{
+        font-size:18px;
+      }
+
+      .reservation-form{
+        padding:28px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <!-- TU UBACI LOGO -->
+      <img src="logo.jpg" class="logo" alt="Logo">
+
+      <h1>Restoran Vodopad Kravice</h1>
+
+      <p class="subtitle">
+        Elegantna atmosfera i savršeni okusi za vaše posebne trenutke
+      </p>
+
+      <a href="#menu" class="menu-btn">
+        Pređi na Menu
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- MENU -->
+
+  <section class="menu-section" id="menu">
+
+    <h2 class="section-title">Naš Menu</h2>
+
+    <div class="menu-grid">
+
+      <!-- Jelo 1 -->
+
+      <div class="menu-card">
+
+        <!-- TU UBACI SLIKU -->
+        <img src="salata.jpg" class="food-image" alt="Food">
+
+        <div class="menu-content">
+
+          <h3 class="food-title">Pileća salata</h3>
+
+          <p class="food-desc">
+            Pileća salata s kukuruzom, lukom, paradajizom, salatom, kupusom i posebnim dressingom.
+          </p>
+
+          <p class="price">18 KM/9,32 €</p>
+
+        </div>
+
+      </div>
+
+      <!-- Jelo 2 -->
+
+      <div class="menu-card">
+
+        <!-- TU UBACI SLIKU -->
+        <img src="burger.jpg" class="food-image" alt="Food">
+
+        <div class="menu-content">
+
+          <h3 class="food-title">Burger kravica+pomfrit</h3>
+
+          <p class="food-desc">
+            Burger s junjećom pljeskavicom, salatom, kupusom, lukom, paradajizom, panceta, bbq umakom i pomfritom
+          </p>
+
+          <p class="price">20 KM/10,36 €</p>
+
+        </div>
+
+      </div>
+
+      <div class="menu-card">
+
+        <img src="pica1.jpg" class="food-image" alt="Food">
+
+        <div class="menu-content">
+
+          <h3 class="food-title">BBQ Chocken pizza</h3>
+
+          <p class="food-desc">
+            Pizza sa pelatom, sirom, lukom, paprikom, gljivama i piletinom
+          </p>
+
+          <p class="price">20 KM/10,36 €</p>
+
+        </div>
+
+      </div>
+
+
+      <div class="menu-card">
+	  
+        <img src="pica2.jpg" class="food-image" alt="Food">
+
+        <div class="menu-content">
+
+          <h3 class="food-title">Pizza Vodopad</h3>
+
+          <p class="food-desc">
+            Pizza sa pelatom, lukom, kukuruzom, gljivama, paprikom, šunkom, sirom i pancetom
+          </p>
+
+          <p class="price">20 KM/10,36 €</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- REZERVACIJE -->
+
+  <section class="reservation-section">
+
+    <h2 class="section-title">
+      Rezervacija Stola
+    </h2>
+
+    <!-- 
+      Email lanco
+
+      primjer:
+      action="https://formsubmit.co/lancoskola@gmail.com"
+    -->
+
+    <form
+      class="reservation-form"
+      action="https://formsubmit.co/lancoskola@gmail.com"
+      method="POST"
+    >
+
+      <!-- ISKLJUCI CAPTCHA -->
+      <input type="hidden" name="_captcha" value="false">
+
+      <!-- NASLOV MAILA -->
+      <input type="hidden" name="_subject" value="Nova rezervacija stola">
+
+      <div class="form-group">
+
+        <label>Ime i Prezime</label>
+
+        <input
+          type="text"
+          name="Ime i Prezime"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          type="email"
+          name="Email"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Broj Telefona</label>
+
+        <input
+          type="tel"
+          name="Telefon"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Datum Rezervacije</label>
+
+        <input
+          type="date"
+          name="Datum"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Vrijeme</label>
+
+        <input
+          type="time"
+          name="Vrijeme"
+          required
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Broj Osoba</label>
+
+        <select name="Broj osoba" required>
+
+          <option value="">Odaberi</option>
+          <option>1 osoba</option>
+          <option>2 osobe</option>
+          <option>3 osobe</option>
+          <option>4 osobe</option>
+          <option>5 osoba</option>
+          <option>6+ osoba</option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Dodatni Zahtjevi</label>
+
+        <textarea
+          name="Dodatni zahtjevi"
+          placeholder="Npr. dječija stolica, rođendanska dekoracija,..."
+        ></textarea>
+
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Pošalji Upit
+      </button>
+
+    </form>
+
+  </section>
+
+  <footer>
+    Restoran vodopad kravice
+  </footer>
+
+</body>
+</html>
